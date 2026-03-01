@@ -121,7 +121,7 @@
 ├── 📄 .gitignore                    # Файлы, игнорируемые Git
 └── 📄 README.md                     # Этот файл
 ```
-👥 Команда и роли
+## 👥 Команда и роли
 <div align="center">
 
 <img src="https://github.com/mewkfeli.png" width="50" height="50" style="border-radius:50%">
@@ -151,3 +151,4 @@ Telegram Bot Developer
 • Интеграция с API
 
 </div>
+

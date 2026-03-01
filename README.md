@@ -8,7 +8,6 @@
 [![Python](https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge&logo=python)](https://python.org)
 [![Telegram](https://img.shields.io/badge/Telegram-Bot-26A5E4?style=for-the-badge&logo=telegram)](https://core.telegram.org/bots/api)
 [![Flask](https://img.shields.io/badge/Flask-API-000000?style=for-the-badge&logo=flask)](https://flask.palletsprojects.com)
-[![HuggingFace](https://img.shields.io/badge/🤗%20HuggingFace-Transformers-FFD21E?style=for-the-badge)](https://huggingface.co)
 
 </div>
 
@@ -151,4 +150,5 @@ Telegram Bot Developer
 • Интеграция с API
 
 </div>
+
 

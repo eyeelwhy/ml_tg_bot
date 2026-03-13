@@ -1,154 +1,172 @@
 <div align="center">
   
-# 🤖 Определитель токсичных комментариев
-### Toxic Comments Detector
+# 🤖 Многофункциональный Telegram-бот
+### С анализатором тональности сообщений
 
-**Командный проект по созданию Telegram-бота для анализа тональности сообщений с использованием готовой модели ИИ и внешнего API**
+**Командная разработка Telegram-бота для анализа текста с использованием готовых ML-моделей и внешних API**
 
-[![Python](https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge&logo=python)](https://python.org)
-[![Telegram](https://img.shields.io/badge/Telegram-Bot-26A5E4?style=for-the-badge&logo=telegram)](https://core.telegram.org/bots/api)
-[![Flask](https://img.shields.io/badge/Flask-API-000000?style=for-the-badge&logo=flask)](https://flask.palletsprojects.com)
+[![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![Telegram Bot API](https://img.shields.io/badge/Telegram_Bot_API-4.14-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://core.telegram.org/bots/api)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.1-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org)
+[![Hugging Face](https://img.shields.io/badge/🤗_Transformers-4.36-FFD21E?style=for-the-badge)](https://huggingface.co)
 
 </div>
 
 ---
 
-## 🌟 Описание проекта
+## 📋 Содержание
+- [🌟 О проекте](#-о-проекте)
+- [✨ Функциональные возможности](#-функциональные-возможности)
+- [⚙️ Детальная реализация](#-детальная-реализация)
+- [🛠 Стек технологий](#-стек-технологий)
+- [👥 Команда проекта](#-команда-проекта)
 
-Проект представляет собой **Telegram-бота**, способного определять токсичность комментариев. Бот анализирует входящие сообщения и классифицирует их по уровню токсичности, используя для этого предобученную модель-трансформер и внешнее API для получения дополнительной информации (например, курса валют по запросу пользователя).
+---
 
-Проект разработан в рамках учебной задачи по **командной разработке** с использованием **Git** и **GitHub**.
+## 🌟 О проекте
 
-### ✨ Ключевые возможности
+Данный проект представляет собой **Telegram-бота** с функцией анализа тональности сообщений (sentiment analysis). Бот обрабатывает входящие сообщения пользователей, классифицируя их эмоциональную окраску, а также предоставляет дополнительные сервисы через внешние API.
 
-| № | Возможность | Описание |
+Проект разработан в рамках учебной задачи по **командной разработке** с использованием **Git** и **GitHub**, что позволило отработать навыки совместной работы над кодом, ведения документации и управления версиями.
+
+---
+
+## ✨ Функциональные возможности
+
+| № | Возможность | Краткое описание |
 |:-:|:---|:---|
-| 1 | **Анализ текста** | Определение токсичности отдельного сообщения |
-| 2 | **Batch-проверка** | Пакетный анализ нескольких сообщений |
-| 3 | **Интерактивные кнопки** | Удобная навигация по меню бота |
-| 4 | **Внешнее API** | Получение курса валют по запросу |
-| 5 | **ML-модель** | Точное определение тональности с помощью трансформера |
+| 1 | **Анализ тональности** | Определение эмоциональной окраски текста с помощью RuBERT |
+| 2 | **Интерактивное меню** | Удобная навигация с помощью инлайн-кнопок |
+| 3 | **Курсы валют** | Получение актуальных курсов через резервные API |
+| 4 | **GigaChat интеграция** | Доступ к нейросетевой модели от Сбера |
 
 ---
 
-## ⚙️ Функциональность
+## ⚙️ Детальная реализация
 
-Проект полностью соответствует техническому заданию:
+### 1. 🤖 Telegram-бот
+Проект полностью соответствует техническому заданию и включает в себя:
+- ✅ Команды `/start`, `/help`, `/status`
+- ✅ Обработка текстовых сообщений
+- ✅ Интерактивные клавиатуры (inline-кнопки)
+- ✅ Отказоустойчивая обработка ошибок
+
+**Внешний вид меню бота:**
+![Интерфейс Telegram-бота](image.png)
+
+### 2. 🧠 Модель для анализа тональности
+| Параметр | Значение |
+|:---|:---|
+| **Модель** | `blanchefort/rubert-base-cased-sentiment-rusentiment` |
+| **Тип** | RuBERT (Russian BERT) |
+| **Задача** | Многоклассовая классификация тональности |
+| **Классы** | POSITIVE, NEGATIVE, NEUTRAL |
 
 <details>
-<summary><b>🤖 Telegram-бот</b></summary>
+<summary><b>📊 Подробное описание модели трансформера</b></summary>
 <br>
   
-  - ✅ Приветствие и меню с кнопками (`/start`)
-  - ✅ Справка по командам (`/help`)
-  - ✅ Команда для проверки статуса бота и API (`/status`)
-  - ✅ Обработка текстовых сообщений
-  - ✅ Обработка нажатий на инлайн-кнопки
-  - ✅ Интерактивные клавиатуры
+  🤖 **Модель трансформера: RuBERT для анализа тональности**
+
+  **Название модели:** `blanchefort/rubert-base-cased-sentiment-rusentiment`
+
+  **Описание модели:**
+  Это специализированная версия RuBERT (Russian BERT), дообученная на корпусе RuSentiment для задачи анализа тональности (sentiment analysis) русскоязычных текстов.
+
+  **Решаемая задача:**
+  Классификация текста по тональности (многоклассовая классификация)
+</details>
+
+### 3. 🌐 Используемые API
+
+<details>
+<summary><b>🤖 GigaChat API (Сбер)</b></summary>
+<br>
+  
+  **Название:** GigaChat API от Сбера (Внешнее API Сбера для доступа к модели GigaChat)
+
+  **Описание:**
+  API для взаимодействия с языковой моделью GigaChat, предоставляющей возможности генерации текста, ответов на вопросы и выполнения различных задач на естественном языке.
 
 </details>
 
 <details>
-<summary><b>🌐 Внешнее API</b></summary>
+<summary><b>💱 API для получения курсов валют</b></summary>
 <br>
   
-  - ✅ Реализован клиент для работы с внешним API (курс валют)
-  - ✅ Бот предоставляет актуальные данные по запросу
-  - ✅ Обработка ошибок при недоступности API
+  В проекте реализована **отказоустойчивая система** с тремя резервными API:
+
+  **2.1 ЦБ РФ (Центральный Банк России)**
+  - Эндпоинт: `https://www.cbr-xml-daily.ru/daily_json.js`
+  - Описание: Официальный API Центрального банка России, предоставляющий курсы валют по отношению к рублю. Самый надежный источник для операций с рублем.
+
+
+  **2.2 exchangerate-api.com**
+  - Эндпоинт: `https://api.exchangerate-api.com/v4/latest/{BASE_CURRENCY}`
+  - Описание: Бесплатное API для получения актуальных курсов валют. Не требует ключа, имеет ограничения на количество запросов.
+
+  **2.3 freecurrencyapi.com**
+  - Эндпоинт: `https://api.freecurrencyapi.com/v1/latest`
+  - Описание: Резервное API для получения курсов валют. Также не требует ключа.
 
 </details>
 
-<details>
-<summary><b>🧠 Готовая модель ИИ (Трансформер)</b></summary>
-<br>
-  
-  - ✅ Используется личная обученная модель для выявления токсичности сообщений
-  - ✅ Zero-shot классификация текста без дополнительного обучения
-  - ✅ Модель запускается локально в отдельном микросервисе
-  - ✅ Быстродействие и независимость от внешних сервисов
+### 4. 📊 Подтверждение работы с Git/GitHub
 
-</details>
-
-<details>
-<summary><b>👥 Командная разработка и Git</b></summary>
-<br>
-  
-  - ✅ Проект разрабатывался двумя участниками
-  - ✅ Использование Git с ветвлением (`feature/api`, `feature/tg-bot`)
-  - ✅ Код хранится в публичном репозитории на GitHub
-
-</details>
+![На этом этапе были проблемы](image-1.png)
 
 ---
 
-## 🛠️ Стек технологий
+## 🛠 Стек технологий
 
 <div align="center">
 
 | Категория | Технологии |
 |:---|:---|
-| **Язык программирования** | ![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python) |
-| **Telegram-бот** | ![pyTelegramBotAPI](https://img.shields.io/badge/pyTelegramBotAPI-4.14-26A5E4?logo=telegram) |
-| **Веб-фреймворк** | ![Flask](https://img.shields.io/badge/Flask-2.3-000000?logo=flask) ![flask-cors](https://img.shields.io/badge/flask--cors-4.0-000000) |
-| **ML / AI** | ![Transformers](https://img.shields.io/badge/Transformers-4.36-FFD21E?logo=huggingface) ![Torch](https://img.shields.io/badge/Torch-2.1-EE4C2C?logo=pytorch) ![GLiClass](https://img.shields.io/badge/GLiClass-1.0-9cf) |
-| **HTTP-клиент** | ![Requests](https://img.shields.io/badge/Requests-2.31-007EC6) |
-| **Конфигурация** | ![python-dotenv](https://img.shields.io/badge/python--dotenv-1.0-ECD53F) |
-| **Контроль версий** | ![Git](https://img.shields.io/badge/Git-F05032?logo=git) ![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github) |
+| **Язык программирования** | ![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=flat-square&logo=python&logoColor=white) |
+| **Telegram Bot** | ![pyTelegramBotAPI](https://img.shields.io/badge/pyTelegramBotAPI-4.14-26A5E4?style=flat-square&logo=telegram&logoColor=white) |
+| **Machine Learning** | ![Transformers](https://img.shields.io/badge/🤗_Transformers-4.36-FFD21E?style=flat-square) ![PyTorch](https://img.shields.io/badge/PyTorch-2.1-EE4C2C?style=flat-square&logo=pytorch&logoColor=white) |
+| **Внешние API** | ![REST API](https://img.shields.io/badge/REST_API-Integration-25A162?style=flat-square&logo=fastapi&logoColor=white) |
+| **Версионирование** | ![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white) |
 
 </div>
 
 ---
 
-## 📁 Структура проекта
+## 👥 Команда проекта
 
-```bash
-📦 toxic-comments-detector
-├── 📂 tg_bot/                      # Telegram-бот
-│   ├── 📄 bot.py                    # Основной файл бота
-│   ├── 📄 config.py                 # Конфигурация и переменные окружения
-│   ├── 📄 handlers.py               # Обработчики сообщений и колбэков
-│   ├── 📄 keyboards.py              # Клавиатуры (Reply/Inline)
-│   ├── 📄 api_client.py             # Клиент для внешнего API
-│   ├── 📄 utils.py                  # Вспомогательные функции
-│   └── 📄 requirements.txt          # Зависимости для бота
-├── 📂 Toxic_comments_ai/
-│   └── 📂 service_api                # Микросервис на Flask с ML моделью
-│       ├── 📄 app.py                    # Flask приложение
-│       ├── 📄 model.py                  # Обертка для модели трансформера
-│       ├── 📄 requirements.txt          # Зависимости для API
-│       └── 📄 README.md                 # Документация API
-├── 📄 .gitignore                    # Файлы, игнорируемые Git
-└── 📄 README.md                     # Этот файл
-```
-## 👥 Команда и роли
 <div align="center">
-
-<img src="https://github.com/mewkfeli.png" width="50" height="50" style="border-radius:50%">
-  
-mewkfeli	
-
-ML-инженер / Backend	
-
-• Разработка API для модели ИИ
-
-• Интеграция трансформера
-
-• Написание клиента для внешнего API
-
-• Интеграция с ботом
-
-<img src="https://github.com/eyeelwhy.png" width="50" height="50" style="border-radius:50%">
-
-eyeelwhy	
-
-Telegram Bot Developer	
-
-• Разработка Telegram-бота
-
-• Создание клавиатур и обработчиков
-
-• Интеграция с API
-
+  <table>
+    <tr>
+      <td align="center" width="200">
+        <a href="https://github.com/mewkfeli">
+          <img src="https://github.com/mewkfeli.png" width="100" style="border-radius:50%" alt="mewkfeli"/><br />
+          <b>@mewkfeli</b>
+        </a>
+        <br />
+        <sub>🧠 ML-инженер / Backend</sub>
+        <br />
+        <sub>• Разработка API для модели ИИ<br/>• Интеграция трансформера<br/>• Написание клиента для внешнего API<br/>• Интеграция с ботом</sub>
+      </td>
+      <td align="center" width="200">
+        <a href="https://github.com/eyeelwhy">
+          <img src="https://github.com/eyeelwhy.png" width="100" style="border-radius:50%" alt="eyeelwhy"/><br />
+          <b>@eyeelwhy</b>
+        </a>
+        <br />
+        <sub>🤖 Telegram Bot Developer</sub>
+        <br />
+        <sub>• Разработка Telegram-бота<br/>• Создание клавиатур и обработчиков<br/>• Интеграция с API</sub>
+      </td>
+    </tr>
+  </table>
 </div>
 
+---
 
+<div align="center">
+  
+  **Проект разработан в рамках учебной практики по командной разработке**  
+  [⬆️ Вернуться к началу](#-многофункциональный-telegram-бот)
+
+</div>
